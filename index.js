@@ -1,15 +1,16 @@
 import express from "express";
 import * as path from "path";
-import "dotenv/config";
+import { router } from "./src/app/routes/main.js";
+import { PORT } from "./src/app/config/app.js";
 
 // Express Setting
 const app = express();
-const port = process.env.PORT || 3000;
 
 // App Setting
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./src/app/views"));
+app.use("/", router);
 
-app.listen(port, () => {
-    console.log(`Server menyala abangkuh di localhost:${port}`);
+app.listen(PORT, () => {
+    console.log(`Server menyala abangkuh di localhost:${PORT}`);
 });
